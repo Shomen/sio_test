@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Timelog index{% endblock %}
+
+{% block body %}
+    <h1>Timelog index</h1>
+    <div class="d-flex flex-row-reverse mb-3">
+        <a class="btn btn-primary mt-3" href="{{ path('app_timelog_new') }}">Create new</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Starttime</th>
+                <th>Endtime</th>
+                <th>Worked</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for timelog in timelogs %}
+            <tr>
+                <td>{{ timelog.id }}</td>
+                <td>{{ timelog.starttime ? timelog.starttime|date('H:i:s') : '' }}</td>
+                <td>{{ timelog.endtime ? timelog.endtime|date('H:i:s') : '' }}</td>
+                <td>{{ timelog.worked ? timelog.worked|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_timelog_show', {'id': timelog.id}) }}">show</a>
+                    <a href="{{ path('app_timelog_edit', {'id': timelog.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+{% endblock %}

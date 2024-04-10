@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="stylesheet" href="{{asset('build/app.css')}}">
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+			<ul class="navbar-nav">
+				{% if app.user %}
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Timmer</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/evaluation">Evaluation</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/project">Projects</a>
+					</li>					
+					<li class="nav-item active">
+						<a class="nav-link" href="/timelog">Timelog</a>
+					</li>	
+				{% endif %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/{{ app.user?'logout':'login' }}">{{ app.user?'Logout':'Login' }}</a>
+                    </li>			
+			</ul>
+		</nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>        
+    </body>
+</html>

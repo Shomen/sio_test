@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(240, 240, 240);
+}
+
+#test-tracking-end{
+    display: none;
+}
+#test-running-time{
+    background:#fff;
+}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h2>Hello, Start working with available projects and track your time</h2>
+
+   <div class="d-flex flex-row-reverse mb-3">
+        <div id="test-tracking-start" class="p-2 btn btn-primary px-4">Start</div>
+        <div id="test-tracking-end" class="p-2 btn btn-primary px-4">End</div>
+        <div id="test-running-time" class="p-2 mr-2">00.00.00</div>        
+    </div>
+    <table id"test-work-project-table" class="table">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Allotedhours</th>
+                <th>Created</th>                
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>                
+                <td> 
+                    <input type="checkbox" id="td-{{ project.id }}" data="{{ project.id }}" class="test-checkbox-projectid"> 
+                </td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.allotedtime }}</td>
+                <td>{{ project.created ? project.created|date('Y-m-d') : '' }}</td>                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

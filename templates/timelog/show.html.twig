@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Timelog{% endblock %}
+
+{% block body %}
+    <h1>Timelog</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ timelog.id }}</td>
+            </tr>
+            <tr>
+                <th>Starttime</th>
+                <td>{{ timelog.starttime ? timelog.starttime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Endtime</th>
+                <td>{{ timelog.endtime ? timelog.endtime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Worked</th>
+                <td>{{ timelog.worked ? timelog.worked|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_timelog_index') }}">back to list</a>
+
+    <a href="{{ path('app_timelog_edit', {'id': timelog.id}) }}">edit</a>
+
+    {{ include('timelog/_delete_form.html.twig') }}
+{% endblock %}

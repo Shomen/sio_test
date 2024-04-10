@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EvaluationController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+    <h1>Worked Per Day ✅</h1>
+    <div class="d-flex flex-row-reverse mb-3">
+        
+            <a type="submit" href="/csvdownload/day" class="btn btn-primary mt-2 px-3">Download CSV</a>
+       
+    </div>
+    <table class="table">
+        <thead>
+            <tr>              
+                <th>User</th>
+                <th>Month</th>
+                <th>Total Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dt in data %}
+            <tr>
+                <td>{{ dt.User}}</td>               
+                <td>{{ dt.Month}}</td>
+                <td>{{ dt.Total }}</td>                
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <h1>Worked Per Month ✅</h1>
+     <div class="d-flex flex-row-reverse mb-3">        
+        <a type="submit" href="/csvdownload/month" class="btn btn-primary mt-2 px-3">Download CSV</a>       
+    </div>
+    <table class="table">
+        <thead>
+            <tr>              
+                <th>User</th>
+                <th>Month</th>
+                <th>Total Time</th>
+                <th>Total Entries</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dt in month %}
+            <tr>               
+                 <td>{{ dt.User}}</td>
+                <td>{{ dt.Month}}</td>
+                <td>{{ dt.Total }}</td>                
+                <td>{{ dt.Entries }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

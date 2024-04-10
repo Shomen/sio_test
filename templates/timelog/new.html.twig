@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Timelog{% endblock %}
+
+{% block body %}
+    <h1>Create new Timelog</h1>
+
+    {{ include('timelog/_form.html.twig') }}
+
+    <a href="{{ path('app_timelog_index') }}">back to list</a>
+{% endblock %}
