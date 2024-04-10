@@ -28,8 +28,9 @@ class TimelogController extends AbstractController
         $timelog = new Timelog();
         $form = $this->createForm(TimelogType::class, $timelog);
         $form->handleRequest($request);
-
+        $user= $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
+            $timelog->setUser($user);
             $entityManager->persist($timelog);
             $entityManager->flush();
 
